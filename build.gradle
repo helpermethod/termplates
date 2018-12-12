@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.github.helpermethod'
+version '0.1.0'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.github.spullara.mustache.java:compiler:0.9.5'
+    testImplementation platform('org.junit:junit-bom:5.3.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+}
+
+test {
+    useJUnitPlatform()
+}
