@@ -6,6 +6,7 @@
 
 * colorized output
 * decorations
-* convention over configuration - just place your templates in a `termplates` folder on your classpath and start rendering
+* convention over configuration
 
 ## Usage
+
