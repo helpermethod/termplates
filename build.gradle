@@ -1,5 +1,7 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'io.spring.bintray' version '0.9.0'
 }
 
 group 'com.github.helpermethod'
