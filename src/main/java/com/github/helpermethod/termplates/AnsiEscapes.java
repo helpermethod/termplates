@@ -2,6 +2,8 @@ package com.github.helpermethod.termplates;
 
 import java.util.function.Function;
 
+import static java.util.function.Function.identity;
+
 class AnsiEscapes {
     // colors
     Function<String, String> black() {
@@ -50,6 +52,6 @@ class AnsiEscapes {
     }
 
     private static Function<String, String> escape(String code) {
-        return System.console() == null ? text -> text : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
+        return System.console() == null ? identity() : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
     }
 }

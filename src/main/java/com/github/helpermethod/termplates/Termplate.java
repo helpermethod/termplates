@@ -6,6 +6,7 @@ import com.github.mustachejava.resolver.ClasspathResolver;
 
 import java.io.IOException;
 import java.io.Writer;
+
 import static java.util.Arrays.asList;
 
 public class Termplate {
@@ -16,7 +17,7 @@ public class Termplate {
     }
 
     public static Termplate compile(String name) {
-        return new Termplate(new DefaultMustacheFactory(new ClasspathResolver()).compile("termplates/" + name + ".mustache"));
+        return new Termplate(new DefaultMustacheFactory(new ClasspathResolver("templates")).compile("name" + ".mustache"));
     }
 
     public void render(Object model, Writer writer) {
