@@ -5,7 +5,6 @@ import java.util.function.Function;
 import static java.util.function.Function.identity;
 
 class AnsiEscapes {
-    // colors
     Function<String, String> black() {
         return escape("30");
     }
@@ -38,7 +37,6 @@ class AnsiEscapes {
         return escape("37");
     }
 
-    // decorations
     Function<String, String> bold() {
         return escape("1");
     }
