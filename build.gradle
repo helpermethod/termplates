@@ -1,9 +1,28 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'io.spring.bintray' version '0.11.1'
 }
 
 group 'com.github.helpermethod'
 version '0.1.0'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+bintray {
+    bintrayUser = System.env.BINTRAY_USER
+    bintrayKey = System.env.BINTRAY_KEY
+    repo = 'maven'
+    publication = 'maven'
+    org = 'helpermethod'
+    licenses = ['Apache 2.0']
+}
 
 repositories {
     jcenter()
