@@ -18,24 +18,24 @@ public class Termplates {
             .compile(new StringReader(template), ""));
     }
 
-    public static Function<Object, String> compileFile(String filename) {
+    public static Function<Object, String> compileFile(String name) {
         return renderFn(new DefaultMustacheFactory(new ClasspathResolver("templates"))
-            .compile(filename + ".mustache"));
+            .compile(name + ".mustache"));
     }
 
     public static String render(String template, Object model) {
         return compile(template).apply(model);
     }
 
-    public String renderFile(String filename, Object model) {
-        return compileFile(filename).apply(model);
+    public static String renderFile(String name, Object model) {
+        return compileFile(name).apply(model);
     }
 
     private static Function<Object, String> renderFn(Mustache mustache) {
         return model -> {
             StringWriter stringWriter = new StringWriter();
             Map<String, Object> ansiEscapes = new HashMap<>();
-            ansiEscapes.put("term", new AnsiEscapes());
+            ansiEscapes.put("t", new AnsiEscapes());
 
             mustache.execute(stringWriter, asList(ansiEscapes, model));
 
