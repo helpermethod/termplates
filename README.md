@@ -7,9 +7,9 @@ ANSI escape codes to output colors and text decorations.
 
 ## Features
 
-* **Colors** Applies foreground and background colors.
-* **Text Decorations** Underlines text and puts it in bold.
-* **TTY detection** Ignores ANSI escape codes when the JVM is not started from an interactive commandline.
+* **Colors** Apply foreground and background colors.
+* **Text Decorations** Underline and bolden text.
+* **TTY detection** Ignore ANSI escape codes when not started from an interactive commandline.
 
 ## Installation
 
