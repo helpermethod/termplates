@@ -3,6 +3,12 @@
 `TERMplates` is a small wrapper around [mustache.java](https://github.com/spullara/mustache.java) which adds
 ANSI escape codes to output colors and text decorations.
 
+## Features
+
+* **Colors** Applies foreground and background colors.
+* **Text Decorations** Underlines text and puts it in bold.
+* **TTY detection** Ignores ANSI escape codes when the JVM is not started from an interactive commandline.
+
 ## Installation
 
 ### Maven
@@ -36,7 +42,7 @@ compile 'com.github.helpermethod:termplates:0.1.0'
 
 ## Usage
 
-The static `render` method takes a Mustache template as a `String` and a model as a `Map` or `Object` as parameters
+The static `render` method takes a Mustache template of type `String` and a model of type `Map` or `Object`
 and returns the rendered template as a `String`.
 
 ```java
@@ -52,12 +58,57 @@ When using Java 10 or above, the above code can be shortened by using `Map.of`.
 System.out.println(Termplates.render("Hello {{name}}!", Map.of("name", "TERMplates")));
 ```
 
-Colors and text decorations can be accessed by using the {{term}} namespace.
+Colors can be accessed by using the {{term}} namespace.
 
 ```java
-System.out.println(Termplates.render("Hello {{term.red}}{{name}}{{/term.red}}", Map.of("name", "TERMplates")));
+System.out.println(Termplates.render("Hello {{#term.red}}{{name}}{{/term.red}}", Map.of("name", "TERMplates")));
 ```
 
-For a full list of supported escape sequences, see [ANSI Escape Codes](#ansi-escape-codes).
+Colors and text decorations can be combined by nesting them (for a full list of supported escape sequences, see [ANSI Escape Codes](#ansi-escape-codes).
+).
+
+```java
+System.out.println(Termplates.render("Hello {{#term.bold}}{{#term.red}}{{name}}{{/term.red}}{{term.bold}}", Map.of("name", "TERMplates")));
+```
+
+For rendering more complex templates, create a file ending on `.mustache` under `src/main/resources/templates`, e.g.
+`movies.mustache`.
+
+```hbs
+{{#term.underline}}MOVIES{{/term.underline}}
+
+{{! iterates over the `movies` array and renders each element on its own line }}
+{{#movies}}
+{{.}}
+{{/movies}}
+```
+
+Use the static `renderFile` method to render the file containing the template.
+
+```java
+// note that you reference the file only by its prefix, i.e. "movies", not "movies.mustache"
+System.out.println(Termplates.renderFile("movies", Map.of("movies", List.of("Evil Dead", "Evil Dead 2", "Army Of Darkness"))));
+```
 
 ## ANSI Escape Codes
+
+## Foreground Colors
+
+| Color | Function |
+| --- | --- |
+| black | `term.black` |
+| red | `term.red` |
+| green | `term.green` |
+| yellow | `term.yellow` |
+| blue | `term.magenta` |
+| magenta | `term.magenta` |
+| cyan | `term.cyan` |
+| white | `term.white` |
+
+## Text Decorations
+
+| Decoration | Function |
+| --- | --- |
+| bold | `term.bold` |
+| underline | `term.underline` |
+| reverse | `term.reverse` |
