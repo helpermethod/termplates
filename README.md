@@ -1,5 +1,7 @@
 # TERMplates
 
+[![Download](https://api.bintray.com/packages/helpermethod/maven/termplates/images/download.svg)](https://bintray.com/helpermethod/maven/termplates/_latestVersion)
+
 `TERMplates` is a small wrapper around [mustache.java](https://github.com/spullara/mustache.java) which adds
 ANSI escape codes to output colors and text decorations.
 
