@@ -35,7 +35,7 @@ public class Termplates {
         return model -> {
             StringWriter stringWriter = new StringWriter();
             Map<String, Object> ansiEscapes = new HashMap<>();
-            ansiEscapes.put("t", new AnsiEscapes());
+            ansiEscapes.put("term", new AnsiEscapes());
 
             mustache.execute(stringWriter, asList(ansiEscapes, model));
 
