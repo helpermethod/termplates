@@ -50,6 +50,10 @@ class AnsiEscapes {
     }
 
     private static Function<String, String> escape(String code) {
-        return System.console() == null ? identity() : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
+        return isTty() ? identity() : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
+    }
+
+    private static boolean isTty() {
+        return System.console() == null;
     }
 }
