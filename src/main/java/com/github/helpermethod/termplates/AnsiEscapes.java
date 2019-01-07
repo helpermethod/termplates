@@ -5,6 +5,12 @@ import java.util.function.Function;
 import static java.util.function.Function.identity;
 
 class AnsiEscapes {
+    private final boolean tty;
+
+    AnsiEscapes() {
+        tty = System.console() == null;
+    }
+
     Function<String, String> black() {
         return escape("30");
     }
@@ -49,11 +55,7 @@ class AnsiEscapes {
         return escape("7");
     }
 
-    private static Function<String, String> escape(String code) {
-        return isTty() ? identity() : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
-    }
-
-    private static boolean isTty() {
-        return System.console() == null;
+    private Function<String, String> escape(String code) {
+        return tty ? identity() : text -> "\u001b[" + code + "m" + text + "\u001b[0m";
     }
 }
