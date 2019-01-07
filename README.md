@@ -44,33 +44,33 @@ compile 'com.github.helpermethod:termplates:0.1.0'
 
 ## Usage
 
-The static `render` method takes a Mustache template of type `String` and a model of type `Map` or `Object`
+The static `renderInline` method takes a Mustache template of type `String` and a model of type `Map` or `Object`
 and returns the rendered template as a `String`.
 
 ```java
 Map<String, Object> model = new HashMap<>();
 model.name = "TERMplates";
 
-System.out.println(Termplates.render("Hello {{name}}!", model));
+System.out.println(Termplates.renderInline("Hello {{name}}!", model));
 ```
 
 When using Java 10 or above, the above code can be shortened by using `Map.of`.
 
 ```java
-System.out.println(Termplates.render("Hello {{name}}!", Map.of("name", "TERMplates")));
+System.out.println(Termplates.renderInline("Hello {{name}}!", Map.of("name", "TERMplates")));
 ```
 
 Colors can be accessed by using the {{term}} namespace.
 
 ```java
-System.out.println(Termplates.render("Hello {{#term.red}}{{name}}{{/term.red}}", Map.of("name", "TERMplates")));
+System.out.println(Termplates.renderInline("Hello {{#term.red}}{{name}}{{/term.red}}", Map.of("name", "TERMplates")));
 ```
 
 Colors and text decorations can be combined by nesting them (for a full list of supported escape sequences, see [ANSI Escape Codes](#ansi-escape-codes).
 ).
 
 ```java
-System.out.println(Termplates.render("Hello {{#term.bold}}{{#term.red}}{{name}}{{/term.red}}{{term.bold}}", Map.of("name", "TERMplates")));
+System.out.println(Termplates.renderInline("Hello {{#term.bold}}{{#term.red}}{{name}}{{/term.red}}{{term.bold}}", Map.of("name", "TERMplates")));
 ```
 
 For rendering more complex templates, create a file ending on `.mustache` under `src/main/resources/templates`, e.g.
@@ -85,7 +85,7 @@ For rendering more complex templates, create a file ending on `.mustache` under 
 {{/movies}}
 ```
 
-Use the static `renderFile` method to render the file containing the template.
+Use the static `render` method to render the file containing the method.
 
 ```java
 // note that you reference the file only by its prefix, i.e. "movies", not "movies.mustache"
