@@ -49,7 +49,7 @@ and returns the rendered template as a `String`.
 
 ```java
 Map<String, Object> model = new HashMap<>();
-model.name = "TERMplates";
+model.put("name","TERMplates");
 
 System.out.println(Termplates.renderInline("Hello {{name}}!", model));
 ```
