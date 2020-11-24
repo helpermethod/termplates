@@ -85,11 +85,11 @@ For rendering more complex templates, create a file ending on `.mustache` under 
 {{/movies}}
 ```
 
-Use the static `render` method to render the file containing the method.
+Use the static `renderFile` method to render the file containing the method.
 
 ```java
 // note that you reference the file only by its prefix, i.e. "movies", not "movies.mustache"
-System.out.println(Termplates.renderFile("movies", Map.of("movies", List.of("Evil Dead", "Evil Dead 2", "Army Of Darkness"))));
+System.out.println(renderFile("movies", Map.of("movies", List.of("Evil Dead", "Evil Dead 2", "Army Of Darkness"))));
 ```
 
 ## ANSI Escape Codes
