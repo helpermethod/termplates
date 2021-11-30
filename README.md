@@ -48,16 +48,9 @@ The static `renderInline` method takes a Mustache template of type `String` and 
 and returns the rendered template as a `String`.
 
 ```java
-Map<String, Object> model = new HashMap<>();
-model.put("name","TERMplates");
+var model = new Map.of("name","TERMplates");
 
 System.out.println(Termplates.renderInline("Hello {{name}}!", model));
-```
-
-When using Java 10 or above, the above code can be shortened by using `Map.of`.
-
-```java
-System.out.println(Termplates.renderInline("Hello {{name}}!", Map.of("name", "TERMplates")));
 ```
 
 Colors can be accessed by using the {{term}} namespace.
